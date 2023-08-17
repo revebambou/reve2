@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.uu.mapper.UuEstHorribleMapper">
+  <select id="queryUuEstHorribleEditDetailMaxValue" resultType="com.uu.entity.UuEstHorribleEditDetail">
+      select
+		  MAX(increaseNumber) + 1 increaseNumber
+		  , MAX(editTimes) + 1 editTimes 
+		from
+		  uuEstHorribleEditDetail 
+		where
+		  editDetailId = #{editDetailId}
+		  <choose>
+		      <when test="number == null or number == 0">
+		        AND (number = 0 or number is null)
+		      </when>
+		     <when test="number > 0">
+		        AND number = #{number}
+		     </when>
+		  </choose>
+  </select>
+
+</mapper>

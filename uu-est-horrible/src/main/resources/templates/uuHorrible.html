@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>a{text-decoration:none}</style>
+    <script th:src="@{/js/jquery.min.js}"></script>
+</head>
+
+<style>
+		.div_cls {
+			height:100px;
+			overflow-x:scroll;
+			overflow-y:hidden;
+		}
+
+      .thead_cls {
+         background:#CCCCCC;
+          display:block
+     }
+     .tbody_cls {
+           height:100px;
+         overflow-y:scroll;
+          display:block
+       }
+.wt40{
+          width:300px;
+          min-width:400px;
+          max-width:400px;
+      }
+      .wt50{
+          width:450px;
+          min-width:450px;
+          max-width:450px;
+      } 
+</style>
+
+<body>
+欢迎你 ：<input th:value="${uuEstHorrible.name}" style="border: none; outline: none"/><br><br><br><br>
+<h2>人员信息维护</h2>
+<form action="" th:action="@{~/__${action}__}" th:object="${uuEstHorrible}" method="post">
+<table width="888" border="1">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>age</th>
+        <th>memo</th>
+    </tr>
+    <tr>
+        <td><input type="text" readonly="readonly" th:field="*{id}"></td>
+        <td><input type="text" th:field="*{name}"></td>
+        <td><input type="text" th:field="*{age}"></td>
+        <td><input type="text" th:field="*{memo}"></td>
+    </tr>
+    </thead>
+    
+    <thead>
+    <tr>
+        <th>detailId</th>
+        <th>number</th>
+        <th>hobby</th>
+        <th>memo</th>
+    </tr>
+    <tr th:each="uuEstHorribleDetail, iterStat:${uuEstHorrible.uuEstHorribleDetailList}">
+    <!-- <td  align="center"><input type="text" id="detailId" th:value="${uuEstHorribleDetail!=null}?${uuEstHorribleDetail.detailId}"></td> -->
+    <td><input type="text" readonly="readonly" th:field="*{uuEstHorribleDetailList[__${iterStat.index}__].detailId}"></td>
+    <td><input type="text" readonly="readonly" th:field="*{uuEstHorribleDetailList[__${iterStat.index}__].number}"></td>
+    <td><input type="text" th:field="*{uuEstHorribleDetailList[__${iterStat.index}__].hobby}"></td>
+    <td><input type="text" th:field="*{uuEstHorribleDetailList[__${iterStat.index}__].memo}"></td>
+	</tr>
+    </thead>
+    
+    <thead>
+    <tr>
+        <th>editDetailId</th>
+        <th>increaseNumber</th>
+        <th>editTimes</th>
+        <th>number</th>
+        <th>editPlace</th>
+        <th>beforeEdit</th>
+        <th>afterEdit</th>
+        <th>memo</th>
+    </tr>
+    <tr th:each="uuEstHorribleEditDetail, iterStat:${uuEstHorrible.uuEstHorribleEditDetailList}">
+    <td><input type="text" th:field="*{uuEstHorribleEditDetailList[__${iterStat.index}__].editDetailId}"></td>
+    <td><input type="text" th:field="*{uuEstHorribleEditDetailList[__${iterStat.index}__].increaseNumber}"></td>
+    <td><input type="text" th:field="*{uuEstHorribleEditDetailList[__${iterStat.index}__].editTimes}"></td>
+    <td><input type="text" th:field="*{uuEstHorribleEditDetailList[__${iterStat.index}__].number}"></td>
+    <td><input type="text" th:field="*{uuEstHorribleEditDetailList[__${iterStat.index}__].editPlace}"></td>
+    <td><input type="text" th:field="*{uuEstHorribleEditDetailList[__${iterStat.index}__].beforeEdit}"></td>
+    <td><input type="text" th:field="*{uuEstHorribleEditDetailList[__${iterStat.index}__].afterEdit}"></td>
+    <td><input type="text" th:field="*{uuEstHorribleEditDetailList[__${iterStat.index}__].memo}"></td>
+	</tr>
+    </thead>
+</table>
+<!-- the following is hidden on screen -->
+<table width="888" border="1" style="display:none">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>age</th>
+        <th>memo</th>
+    </tr>
+    <tr>
+        <td  align="center"><input type="text" th:field="*{idBk}"></td>
+        <td  align="center"><input type="text" th:field="*{nameBk}"></td>
+        <td  align="center"><input type="text" th:field="*{ageBk}"></td>
+        <td  align="center"><input type="text" th:field="*{memoBk}"></td>
+    </tr>
+    </thead>
+    
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>number</th>
+        <th>hobby</th>
+        <th>memo</th>
+    </tr>
+    <tr th:each="uuEstHorribleDetailBk, iterStat:${uuEstHorrible.uuEstHorribleDetailList}">
+    <td><input type="text" th:field="*{uuEstHorribleDetailList[__${iterStat.index}__].detailIdBk}"></td>
+    <td><input type="text" th:field="*{uuEstHorribleDetailList[__${iterStat.index}__].numberBk}"></td>
+    <td><input type="text" th:field="*{uuEstHorribleDetailList[__${iterStat.index}__].hobbyBk}"></td>
+    <td><input type="text" th:field="*{uuEstHorribleDetailList[__${iterStat.index}__].memoBk}"></td>
+	</tr>
+    </thead>
+        
+    <thead>
+    <tr>
+        <th>editDetailId</th>
+        <th>increaseNumber</th>
+        <th>editTimes</th>
+        <th>number</th>
+        <th>editPlace</th>
+        <th>beforeEdit</th>
+        <th>afterEdit</th>
+        <th>memo</th>
+    </tr>
+    <tr th:each="uuEstHorribleEditDetail, iterStat:${uuEstHorrible.uuEstHorribleEditDetailList}">
+    <td><input type="text" th:field="*{uuEstHorribleEditDetailList[__${iterStat.index}__].editDetailIdBk}"></td>
+    <td><input type="text" th:field="*{uuEstHorribleEditDetailList[__${iterStat.index}__].increaseNumberBk}"></td>
+    <td><input type="text" th:field="*{uuEstHorribleEditDetailList[__${iterStat.index}__].editTimesBk}"></td>
+    <td><input type="text" th:field="*{uuEstHorribleEditDetailList[__${iterStat.index}__].numberBk}"></td>
+    <td><input type="text" th:field="*{uuEstHorribleEditDetailList[__${iterStat.index}__].editPlaceBk}"></td>
+    <td><input type="text" th:field="*{uuEstHorribleEditDetailList[__${iterStat.index}__].beforeEditBk}"></td>
+    <td><input type="text" th:field="*{uuEstHorribleEditDetailList[__${iterStat.index}__].afterEditBk}"></td>
+    <td><input type="text" th:field="*{uuEstHorribleEditDetailList[__${iterStat.index}__].memoBk}"></td>
+	</tr>
+    </thead>
+</table>
+<div class="panelBar" th:replace="uuHorrible2::uuHorrible2"></div>
+<input type="submit" value="Uu Submit">
+</form>
+</body>
+</html>

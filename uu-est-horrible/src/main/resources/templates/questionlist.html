@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<!-- 所有html页面添加头 -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<script>
+function init() {
+	var level = [[${level}]];   /* thymeleaf在Js里面获取SpringMVCModel里面写的值 */
+	alert([[${que.word}]].value);
+	getElementById("level").innerHTML = level;
+}
+</script>
+<body onLoad="init();">
+<p th:text="'Hello, ' + ${name} + '!'">3333</p>
+<input type="text" id="word" name="word"  th:value="${que!=null}?${que.word}">
+<input type="text" id="answer" name="answer" th:value="${que!=null}?${que.answer}">              
+<input type="text" id="level">
+
+</body>
+</html>
