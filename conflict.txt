@@ -1,2 +1,3 @@
 コンフリクト
+edit with user1
 edit with user2
